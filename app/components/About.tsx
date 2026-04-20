@@ -69,7 +69,7 @@ export default function About() {
                 {[
                   { k: "Name", v: "Rahul Kumar Yadav" },
                   { k: "Role", v: "Full-Stack Dev" },
-                  { k: "Location", v: "Pune, India" },
+                  { k: "Location", v: "Ahmedabad, India" },
                   { k: "Degree", v: "B.E. IT — AIT Pune" },
                   { k: "Company", v: "Oriserve (2025–26)" },
                   { k: "Status", v: "✓ Available Now" },
