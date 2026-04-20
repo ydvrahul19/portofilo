@@ -141,7 +141,7 @@ export default function Hero() {
               style={{ maxWidth: "520px" }}
             >
               <div className="annotation text-xs text-accent mb-1">
-                2+ years · 15+ projects
+                3+ years · 15+ projects
               </div>
               <p className="text-ink-light text-base leading-relaxed">
                 Building scalable software solutions from elegant UIs to robust
@@ -180,7 +180,7 @@ export default function Hero() {
             {/* Stats row - like graph annotations */}
             <div className="flex gap-8 flex-wrap">
               {[
-                { n: "2+", l: "Years Exp", note: "since 2022" },
+                { n: "3+", l: "Years Exp", note: "since 2023" },
                 { n: "15+", l: "Projects", note: "shipped" },
                 { n: "10+", l: "Technologies", note: "mastered" },
                 { n: "∞", l: "Curiosity", note: "always" },
