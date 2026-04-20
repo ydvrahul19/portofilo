@@ -89,7 +89,7 @@ export default function About() {
                   <span className="annotation text-xl text-ink-light" style={{ transform: "rotate(-2deg)", display: "inline-block" }}>
                     Rahul K.Y.
                   </span>
-                  <span className="field-label text-[0.55rem]">2025</span>
+                  <span className="field-label text-[0.55rem]">2026</span>
                 </div>
               </div>
             </div>
@@ -138,7 +138,7 @@ export default function About() {
                 of Technology.
               </p>
               <p className="text-ink-light leading-7 mb-4">
-                With <strong className="text-ink">2+ years of professional experience</strong>,
+                With <strong className="text-ink">3+ years of professional experience</strong>,
                 I&apos;ve honed my skills building scalable, efficient software at Oriserve as an
                 Associate Software Development Engineer — contributing to impactful projects
                 alongside talented teams.
@@ -179,7 +179,7 @@ export default function About() {
                 { icon: "🎓", title: "Education", detail: "B.E. IT — AIT Pune, 2023" },
                 { icon: "💼", title: "Experience", detail: "Sparrowhawk System . 2023–2025" },
                 { icon: "💼", title: "Experience", detail: "Oriserve · 2025–2026" },
-                { icon: "🚀", title: "Freelance", detail: "Available since 2024" },
+                { icon: "🚀", title: "Freelance", detail: "Available since 2026" },
                 { icon: "📍", title: "Location", detail: "Pune, Maharashtra, IST" },
               ].map((fact) => (
                 <div
