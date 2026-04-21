@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import DevProfileFig from "./DevProfileFig";
 
 const roles = [
   "Full-Stack Developer",
@@ -74,7 +75,7 @@ export default function Hero() {
 
       {/* Main content */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 w-full">
-        <div className="grid md:grid-cols-[1fr_auto] gap-12 items-center">
+        <div className="grid md:grid-cols-[1fr_1.1fr] gap-10 items-center">
 
           {/* Left: text content */}
           <div>
@@ -199,69 +200,9 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right: Blueprint avatar card */}
-          <div className="hidden md:block">
-            <div className="relative w-56 h-72 bracket-corner" style={{ padding: "12px" }}>
-              {/* Graph paper card */}
-              <div
-                className="w-full h-full relative overflow-hidden"
-                style={{
-                  background: "rgba(74,127,181,0.04)",
-                  border: "1px solid rgba(74,127,181,0.3)",
-                  borderRadius: "2px",
-                }}
-              >
-                {/* Grid lines inside */}
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    backgroundImage:
-                      "repeating-linear-gradient(rgba(74,127,181,0.12) 0px, transparent 1px, transparent 20px), repeating-linear-gradient(90deg, rgba(74,127,181,0.12) 0px, transparent 1px, transparent 20px)",
-                  }}
-                />
-
-                {/* Initials */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
-                  <div
-                    className="font-display font-bold text-blueprint/40"
-                    style={{ fontSize: "5rem", letterSpacing: "-0.05em", lineHeight: 1 }}
-                  >
-                    RKY
-                  </div>
-                  <div className="field-label text-[0.6rem] mt-2">DEV_PROFILE.fig</div>
-                </div>
-
-                {/* Dimension annotations */}
-                <div className="absolute top-2 left-2 annotation text-xs text-blue-line/50">
-                  fig.01
-                </div>
-                <div className="absolute bottom-2 right-2 field-label text-[0.6rem] text-blue-line/40">
-                  RAHUL K.Y
-                </div>
-
-                {/* Measurement lines */}
-                <div className="absolute top-0 left-1/2 w-px h-3 bg-blue-line/30" />
-                <div className="absolute bottom-0 left-1/2 w-px h-3 bg-blue-line/30" />
-                <div className="absolute left-0 top-1/2 h-px w-3 bg-blue-line/30" />
-                <div className="absolute right-0 top-1/2 h-px w-3 bg-blue-line/30" />
-              </div>
-
-              {/* Floating annotation tags */}
-              <div
-                className="absolute -right-20 top-4 sticky-note px-3 py-1.5 text-xs font-sketch"
-                style={{ borderRadius: "1px" }}
-              >
-                <div className="font-mono text-[0.6rem] text-ink-faint">↑ B.E. IT</div>
-                <div className="text-ink text-xs">AIT Pune</div>
-              </div>
-              <div
-                className="absolute -left-16 bottom-8 sticky-note px-3 py-1.5 text-xs font-sketch"
-                style={{ borderRadius: "1px", transform: "rotate(-2deg)", background: "#c8f7c5" }}
-              >
-                <div className="font-mono text-[0.6rem] text-ink-faint">⚡ Status</div>
-                <div className="text-green-800 text-xs font-semibold">Available</div>
-              </div>
-            </div>
+          {/* Right: DEV_PROFILE.fig — infinite terminal workspace */}
+          <div className="hidden md:block w-full max-w-lg">
+            <DevProfileFig />
           </div>
         </div>
       </div>

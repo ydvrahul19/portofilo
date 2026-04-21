@@ -1,19 +1,19 @@
 "use client";
 import { useEffect, useState } from "react";
+import Logo from "./Logo";
 
 const links = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
+  { href: "#home",       label: "Home" },
+  { href: "#about",      label: "About" },
+  { href: "#skills",     label: "Skills" },
   { href: "#experience", label: "Experience" },
-  { href: "#projects", label: "Projects" },
-  { href: "#contact", label: "Hire Me", cta: true },
+  { href: "#projects",   label: "Projects" },
+  { href: "#contact",    label: "Hire Me", cta: true },
 ];
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("#home");
+  const [open, setOpen]         = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -31,19 +31,14 @@ export default function Nav() {
       style={{ backdropFilter: scrolled ? "blur(12px)" : "none" }}
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-        {/* Logo - like a drafting stamp */}
-        <a href="#home" className="group flex items-center gap-2">
-          <div className="relative w-10 h-10 flex items-center justify-center">
-            <svg viewBox="0 0 40 40" className="absolute inset-0 w-full h-full">
-              <rect x="2" y="2" width="36" height="36" rx="4"
-                fill="none" stroke="#4a7fb5" strokeWidth="1.5"
-                strokeDasharray="4 2" opacity="0.6"
-              />
-            </svg>
-            <span className="font-mono text-xs font-bold text-blueprint leading-none">RKY</span>
-          </div>
+
+        {/* LOGO */}
+        <a href="#home" className="group flex items-center gap-2.5">
+          <Logo size={44} />
           <div className="hidden sm:flex flex-col leading-none">
-            <span className="font-display font-semibold text-sm text-ink">Rahul Kumar Yadav</span>
+            <span className="font-display font-semibold text-sm text-ink tracking-tight">
+              Rahul Kumar Yadav
+            </span>
             <span className="field-label text-[0.6rem]">Full-Stack Developer</span>
           </div>
         </a>
@@ -62,15 +57,12 @@ export default function Nav() {
                 style={link.cta ? { transform: "rotate(-0.5deg)", display: "inline-block" } : {}}
               >
                 {link.label}
-                {!link.cta && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
-                )}
               </a>
             </li>
           ))}
         </ul>
 
-        {/* Mobile hamburger */}
+        {/* Mobile Hamburger */}
         <button
           className="md:hidden flex flex-col gap-1.5 p-2"
           onClick={() => setOpen(!open)}
