@@ -133,7 +133,7 @@ export default function About() {
 
               <p className="text-ink-light leading-7 mb-4">
                 Hi! I&apos;m <strong className="text-ink">Rahul Kumar Yadav</strong>, a passionate
-                software developer based in <strong className="text-ink">Pune, India</strong>.
+                software developer based in <strong className="text-ink">Ahmedabad, India</strong>.
                 I hold a Bachelor of Engineering in Information Technology from the Army Institute
                 of Technology.
               </p>
@@ -180,7 +180,7 @@ export default function About() {
                 { icon: "💼", title: "Experience", detail: "Sparrowhawk System . 2023–2025" },
                 { icon: "💼", title: "Experience", detail: "Oriserve · 2025–2026" },
                 { icon: "🚀", title: "Freelance", detail: "Available since 2026" },
-                { icon: "📍", title: "Location", detail: "Pune, Maharashtra, IST" },
+                { icon: "📍", title: "Location", detail: "Ahmedabad, Maharashtra, IST" },
               ].map((fact) => (
                 <div
                   key={fact.title}
