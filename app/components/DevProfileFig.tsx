@@ -17,10 +17,11 @@ const BLOCKS = [
   { type: "line",  h: `<span class="tx"><span class="kw">NAME    </span> <span class="nm">Rahul Kumar Yadav</span></span>` },
   { type: "line",  h: `<span class="tx"><span class="kw">ROLE    </span> <span class="nm">Full-Stack Developer</span></span>` },
   { type: "line",  h: `<span class="tx"><span class="kw">LOCATION</span> <span class="st">Pune, Maharashtra, India</span></span>` },
-  { type: "line",  h: `<span class="tx"><span class="kw">DEGREE  </span> <span class="st">B.E. IT — AIT Pune (2022)</span></span>` },
-  { type: "line",  h: `<span class="tx"><span class="kw">COMPANY </span> <span class="nm">Oriserve · 2022–2024</span></span>` },
-  { type: "line",  h: `<span class="tx"><span class="kw">FREELANC</span> <span class="ok">Available · 2024–Present</span></span>` },
-  { type: "line",  h: `<span class="tx"><span class="kw">EXP     </span> <span class="nm">2+ yrs · 15+ projects shipped</span></span>` },
+  { type: "line",  h: `<span class="tx"><span class="kw">DEGREE  </span> <span class="st">B.E. IT — AIT Pune (2023)</span></span>` },
+  { type: "line",  h: `<span class="tx"><span class="kw">COMPANY </span> <span class="nm">Sparrowhawk System · 2023–2025</span></span>` },
+  { type: "line",  h: `<span class="tx"><span class="kw">COMPANY </span> <span class="nm">Oriserve · 2025–2026</span></span>` },
+  { type: "line",  h: `<span class="tx"><span class="kw">FOUNDER </span> <span class="ok">LocalRizz · 2026–Present</span></span>` },
+  { type: "line",  h: `<span class="tx"><span class="kw">EXP     </span> <span class="nm">3+ yrs · 15+ projects shipped</span></span>` },
   { type: "line",  h: `<span class="tx"><span class="kw">PHONE   </span> <span class="st">+91 88900 85616</span></span>` },
   { type: "line",  h: `<span class="tx"><span class="kw">STATUS  </span> <span class="ok">✓  OPEN TO WORK</span></span>` },
   { type: "blank" },
@@ -43,8 +44,8 @@ const BLOCKS = [
   { type: "cmd",   h: `<span class="pr">$</span><span class="tx"> <span class="fn">contact</span> <span class="st">--all</span></span>` },
   { type: "line",  h: `<span class="tx"><span class="cm">→ WhatsApp  </span><span class="ok">wa.me/918890085616</span></span>` },
   { type: "line",  h: `<span class="tx"><span class="cm">→ Email     </span><span class="ok">rahulkumaryadav@email.com</span></span>` },
-  { type: "line",  h: `<span class="tx"><span class="cm">→ GitHub    </span><span class="st">github.com/rahul-ky</span></span>` },
-  { type: "line",  h: `<span class="tx"><span class="cm">→ LinkedIn  </span><span class="st">linkedin.com/in/rahul-ky</span></span>` },
+  { type: "line",  h: `<span class="tx"><span class="cm">→ GitHub    </span><span class="st">github.com/ydvrahul19</span></span>` },
+  { type: "line",  h: `<span class="tx"><span class="cm">→ LinkedIn  </span><span class="st">linkedin.com/in/rahul-yadav-679193190</span></span>` },
   { type: "blank" },
   { type: "divider" },
   { type: "line",  h: `<span class="tx"><span class="cm">// session complete — restarting in 15s...</span></span>` },
@@ -274,8 +275,8 @@ export default function DevProfileFig() {
 
       <div className="dpf-root">
         <div className="dpf-topbar">
-          <span className="dpf-fl">DEV_PROFILE.fig — rahul kumar yadav</span>
-          <span className="dpf-an">fig.01 · infinite terminal</span>
+          <span className="dpf-fl">Rahul Kumar Yadav</span>
+          {/* <span className="dpf-an">fig.01 · infinite terminal</span> */}
         </div>
 
         <div className="dpf-scene">
@@ -361,7 +362,7 @@ export default function DevProfileFig() {
         <div className="dpf-botbar">
           <div style={{ display:"flex", alignItems:"center" }}>
             <span className="dpf-sdot"/>
-            <span className="dpf-fl">online · available for hire · pune, india</span>
+            <span className="dpf-fl">online · available for hire · Ahmedabad, india</span>
           </div>
           <span className="dpf-an">+91 88900 85616</span>
         </div>
