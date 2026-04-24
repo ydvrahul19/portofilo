@@ -180,7 +180,7 @@ export default function About() {
                 { icon: "💼", title: "Experience", detail: "Sparrowhawk System . 2023–2025" },
                 { icon: "💼", title: "Experience", detail: "Oriserve · 2025–2026" },
                 { icon: "🚀", title: "Freelance", detail: "Available since 2026" },
-                { icon: "📍", title: "Location", detail: "Ahmedabad, Maharashtra, IST" },
+                { icon: "📍", title: "Location", detail: "Ahmedabad, Gujarat, India" },
               ].map((fact) => (
                 <div
                   key={fact.title}
