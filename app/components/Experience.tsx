@@ -1,15 +1,16 @@
 const experiences = [
   {
-    company: "Localrizz",
-    role: "Full-Stack Developer",
+    company: "Accenture",
+    role: "Software Development Engineer (Full Stack)",
     period: "2026 – Present",
     status: "current",
     desc: [
-      "Partnered with clients across diverse domains to architect and deliver custom web applications, MVPs, and admin dashboards — owning the full lifecycle from requirement gathering and system design to deployment.",
-      "Built automation tools and scalable full-stack solutions using React, Next.js, and Node.js, reducing manual workflows and accelerating time-to-market for client products.",
-      "Managed end-to-end client communication and technical delivery simultaneously, ensuring on-time launches and translating business requirements into production-ready applications.",
+      "Develop full-stack features using React and Next.js on the frontend and Node.js and TypeScript on the backend, from requirement analysis through development, testing and deployment.",
+      "Design and build REST APIs, database schemas and authentication flows backed by PostgreSQL/MongoDB.",
+      "Troubleshoot and fix issues across the frontend, backend and database layers, and write clean, maintainable, tested code.",
+      "Collaborate with cross-functional teams in an Agile workflow, including code reviews, sprint planning and release support.",
     ],
-    tags: ["React", "Next.js", "Node.js", "Full-Stack", "Client Work"],
+    tags: ["React", "Next.js", "Node.js", "TypeScript", "Full-Stack"],
     note: "ongoing",
   },
   {
