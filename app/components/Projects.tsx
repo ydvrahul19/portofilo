@@ -1,14 +1,18 @@
-const projects = [
+import { SITE } from "../site";
+
+type Project = { id: string; icon: string; name: string; type: string; desc: string; tags: string[]; color: string; github: string; demo: string };
+
+const projects: Project[] = [
   {
     id: "P001",
     icon: "🏥",
     name: "DoctorMy",
-    type: "Healthcare Platform",
-    desc: "Connecting patients with doctors for online consultations, appointment booking, and medical records management.",
-    tags: ["React", "Node.js", "MongoDB", "Socket.io"],
+    type: "Healthcare Appointment Platform",
+    desc: "Full-stack appointment booking across 20+ medical specialties with JWT authentication, protected routes and interactive doctor profiles. REST API and data layer for real-time booking; page load time cut by 40% with lazy loading and code splitting.",
+    tags: ["React", "Node.js", "JWT", "Tailwind CSS", "Framer Motion"],
     color: "#4a7fb5",
-    status: "deployed",
-    complexity: "★★★★",
+    github: "",
+    demo: "https://doctormyin.vercel.app/",
   },
   {
     id: "P002",
@@ -18,8 +22,8 @@ const projects = [
     desc: "Automated drip campaign builder with audience segmentation, analytics, and scheduled delivery.",
     tags: ["React", "Express", "Nodemailer", "PostgreSQL"],
     color: "#c4420a",
-    status: "deployed",
-    complexity: "★★★",
+    github: "", // e.g. "https://github.com/ydvrahul06/your-repo"
+    demo: "",   // e.g. "https://doctormy.vercel.app"
   },
   {
     id: "P003",
@@ -29,8 +33,8 @@ const projects = [
     desc: "Full-featured invoice system with PDF generation, payment tracking, client management, and financial dashboard.",
     tags: ["React", "Node.js", "PDF.js", "MySQL"],
     color: "#1a7a4a",
-    status: "live",
-    complexity: "★★★★",
+    github: "", // e.g. "https://github.com/ydvrahul06/your-repo"
+    demo: "",   // e.g. "https://doctormy.vercel.app"
   },
   {
     id: "P004",
@@ -40,8 +44,8 @@ const projects = [
     desc: "Chat application with group rooms, file sharing, emoji support, and end-to-end encryption for secure communication.",
     tags: ["React", "Socket.io", "Node.js", "Redis"],
     color: "#7c3aed",
-    status: "deployed",
-    complexity: "★★★★",
+    github: "", // e.g. "https://github.com/ydvrahul06/your-repo"
+    demo: "",   // e.g. "https://doctormy.vercel.app"
   },
   {
     id: "P005",
@@ -51,8 +55,8 @@ const projects = [
     desc: "In-browser code editor with multi-language support, syntax highlighting, live preview, and collaborative sessions.",
     tags: ["React", "Monaco", "WebSockets", "Docker"],
     color: "#0891b2",
-    status: "beta",
-    complexity: "★★★★★",
+    github: "", // e.g. "https://github.com/ydvrahul06/your-repo"
+    demo: "",   // e.g. "https://doctormy.vercel.app"
   },
   {
     id: "P006",
@@ -62,8 +66,8 @@ const projects = [
     desc: "Travel discovery app with curated itineraries, local recommendations, budget tracking, and social trip sharing.",
     tags: ["React", "Maps API", "Firebase", "PWA"],
     color: "#b45309",
-    status: "live",
-    complexity: "★★★",
+    github: "", // e.g. "https://github.com/ydvrahul06/your-repo"
+    demo: "",   // e.g. "https://doctormy.vercel.app"
   },
 ];
 
@@ -99,22 +103,12 @@ export default function Projects() {
               style={{ animationDelay: `${i * 80}ms` }}
             >
               <div
-                className="relative h-full flex flex-col"
+                className="project-card relative h-full flex flex-col"
                 style={{
                   background: "#faf7f2",
                   border: "1px solid rgba(74,127,181,0.18)",
                   borderRadius: "2px",
-                  boxShadow: "2px 2px 0 rgba(0,0,0,0.04)",
-                  transition: "box-shadow 0.2s, transform 0.2s",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.boxShadow =
-                    `4px 6px 0 ${p.color}30`;
-                  (e.currentTarget as HTMLDivElement).style.transform = "translate(-2px,-2px)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.boxShadow = "2px 2px 0 rgba(0,0,0,0.04)";
-                  (e.currentTarget as HTMLDivElement).style.transform = "none";
+                  ["--c" as string]: p.color,
                 }}
               >
                 {/* Spec header bar */}
@@ -125,36 +119,7 @@ export default function Projects() {
                     borderBottom: `1px solid ${p.color}25`,
                   }}
                 >
-                  <div className="flex items-center gap-2">
-                    {/* Blueprint dot - like an LED indicator */}
-                    <div
-                      className="w-2 h-2 rounded-full"
-                      style={{
-                        background:
-                          p.status === "live" || p.status === "deployed"
-                            ? "#16a34a"
-                            : "#f59e0b",
-                        boxShadow:
-                          p.status === "live"
-                            ? "0 0 6px #16a34a80"
-                            : "none",
-                      }}
-                    />
-                    <span className="field-label text-[0.6rem]">{p.id}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span
-                      className="font-mono text-[0.6rem] px-2 py-0.5"
-                      style={{
-                        border: `1px solid ${p.color}40`,
-                        color: p.color,
-                        borderRadius: "2px",
-                        background: `${p.color}08`,
-                      }}
-                    >
-                      {p.status.toUpperCase()}
-                    </span>
-                  </div>
+                  <span className="field-label text-[0.7rem]">{p.id}</span>
                 </div>
 
                 <div className="p-5 flex-1 flex flex-col">
@@ -174,19 +139,8 @@ export default function Projects() {
                       <h3 className="font-display font-semibold text-base text-ink leading-tight">
                         {p.name}
                       </h3>
-                      <div className="field-label text-[0.62rem] mt-0.5">{p.type}</div>
+                      <div className="field-label text-[0.72rem] mt-0.5">{p.type}</div>
                     </div>
-                  </div>
-
-                  {/* Complexity rating */}
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="field-label text-[0.6rem]">Complexity</span>
-                    <span
-                      className="annotation text-xs"
-                      style={{ color: p.color, letterSpacing: "0.05em" }}
-                    >
-                      {p.complexity}
-                    </span>
                   </div>
 
                   {/* Desc - ruled */}
@@ -199,7 +153,7 @@ export default function Projects() {
                     {p.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="font-mono text-[0.65rem] px-1.5 py-0.5"
+                        className="font-mono text-[0.72rem] px-1.5 py-0.5"
                         style={{
                           border: `1px solid ${p.color}30`,
                           color: p.color,
@@ -212,35 +166,48 @@ export default function Projects() {
                     ))}
                   </div>
 
-                  {/* Action links - like blueprint action stamps */}
-                  <div className="flex gap-2 pt-3" style={{ borderTop: "1px dashed rgba(74,127,181,0.2)" }}>
-                    <a
-                      href="#"
-                      className="flex items-center gap-1 font-mono text-xs text-ink-faint hover:text-ink transition-colors px-3 py-1.5"
-                      style={{
-                        border: "1px solid rgba(74,127,181,0.2)",
-                        borderRadius: "2px",
-                        background: "rgba(74,127,181,0.04)",
-                      }}
-                    >
-                      ⌥ GitHub
-                    </a>
-                    <a
-                      href="#"
-                      className="flex items-center gap-1 font-mono text-xs hover:opacity-90 transition-opacity px-3 py-1.5 text-paper"
-                      style={{
-                        background: p.color,
-                        borderRadius: "2px",
-                        opacity: 0.8,
-                      }}
-                    >
-                      ↗ Live Demo
-                    </a>
-                  </div>
+                  {(p.github || p.demo) && (
+                    <div className="flex gap-2 pt-3" style={{ borderTop: "1px dashed rgba(74,127,181,0.2)" }}>
+                      {p.github && (
+                        <a
+                          href={p.github}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex items-center gap-1 font-mono text-xs text-ink-faint hover:text-ink transition-colors px-3 py-1.5"
+                          style={{ border: "1px solid rgba(74,127,181,0.2)", borderRadius: "2px", background: "rgba(74,127,181,0.04)" }}
+                        >
+                          ⌥ GitHub
+                        </a>
+                      )}
+                      {p.demo && (
+                        <a
+                          href={p.demo}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex items-center gap-1 font-mono text-xs hover:opacity-90 transition-opacity px-3 py-1.5 text-paper"
+                          style={{ background: p.color, borderRadius: "2px" }}
+                        >
+                          ↗ Live Demo
+                        </a>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="reveal mt-10 text-center">
+          <a
+            href={SITE.github}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 font-mono text-sm text-blueprint border border-blue-line/40 px-5 py-2.5 hover:bg-blue-faint/30 transition-colors"
+            style={{ borderRadius: "2px" }}
+          >
+            ⌥ See more on GitHub →
+          </a>
         </div>
       </div>
     </section>

@@ -1,13 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
 import DevProfileFig from "./DevProfileFig";
+import { SITE } from "../site";
 
 const roles = [
-  "Full-Stack Developer",
-  "React Specialist",
-  "Node.js Engineer",
-  "AI Integrator",
-  "Problem Solver",
+  "Full-Stack Engineer",
+  "React & Next.js",
+  "Node.js & TypeScript",
 ];
 
 export default function Hero() {
@@ -51,11 +50,6 @@ export default function Hero() {
           </div>
         ))}
 
-        {/* Coordinate labels */}
-        <span className="absolute top-10 left-16 field-label opacity-30 text-[0.6rem]">X: 0.00</span>
-        <span className="absolute top-10 right-16 field-label opacity-30 text-[0.6rem]">Y: 0.00</span>
-        <span className="absolute bottom-16 left-10 field-label opacity-30 text-[0.6rem] rotate-90 origin-left">Z-AXIS</span>
-
         {/* Large faint circle */}
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-[0.04]"
@@ -83,24 +77,18 @@ export default function Hero() {
             <div className="inline-flex items-center gap-2 mb-8">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
               <span className="font-mono text-xs text-ink-faint tracking-widest uppercase">
-                Available for Freelance · Pune, India
+                Open to opportunities · Ahmedabad, India
               </span>
               <div
                 className="stamp ml-2"
-                style={{ fontSize: "0.55rem", padding: "2px 8px", transform: "rotate(-1deg)" }}
+                style={{ fontSize: "0.7rem", padding: "2px 8px", transform: "rotate(-1deg)" }}
               >
-                Open to Work
+                Freelance Open
               </div>
             </div>
 
             {/* Name - large, with sketch annotation */}
             <div className="relative mb-4">
-              <div
-                className="annotation text-sm mb-1 opacity-70"
-                style={{ marginLeft: "2px" }}
-              >
-                // Full name →
-              </div>
               <h1
                 className="font-display font-bold text-ink leading-tight"
                 style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)", letterSpacing: "-0.03em" }}
@@ -142,12 +130,13 @@ export default function Hero() {
               style={{ maxWidth: "520px" }}
             >
               <div className="annotation text-xs text-accent mb-1">
-                3+ years · 15+ projects
+                Software Engineer · Accenture
               </div>
               <p className="text-ink-light text-base leading-relaxed">
-                Building scalable software solutions from elegant UIs to robust
-                backend systems. Turning complex problems into clean, maintainable
-                code that actually ships.
+                Full-stack engineer with 3+ years of experience building backend
+                APIs and web apps with Node.js, TypeScript, React and
+                PostgreSQL/MongoDB — owning features from system design and
+                database modeling to deployment.
               </p>
             </div>
 
@@ -161,20 +150,19 @@ export default function Hero() {
                 <span>↗</span> View My Work
               </a>
               <a
-                href="tel:+918890085616"
+                href={SITE.resume}
+                download
                 className="inline-flex items-center gap-2 border border-blue-line/50 text-blueprint px-6 py-3 font-mono text-sm hover:border-blue-line hover:bg-blue-faint/30 transition-all duration-200"
                 style={{ borderRadius: "2px" }}
               >
-                <span>☎</span> +91 88900 85616
+                <span aria-hidden="true">↓</span> Download Resume
               </a>
               <a
-                href="https://wa.me/918890085616"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 border border-green-500/40 text-green-700 px-6 py-3 font-mono text-sm hover:bg-green-50 transition-all duration-200"
+                href={`mailto:${SITE.email}`}
+                className="inline-flex items-center gap-2 border border-blue-line/50 text-blueprint px-6 py-3 font-mono text-sm hover:border-blue-line hover:bg-blue-faint/30 transition-all duration-200"
                 style={{ borderRadius: "2px" }}
               >
-                <span>●</span> WhatsApp
+                <span aria-hidden="true">✉</span> Email Me
               </a>
             </div>
 
@@ -182,9 +170,8 @@ export default function Hero() {
             <div className="flex gap-8 flex-wrap">
               {[
                 { n: "3+", l: "Years Exp", note: "since 2023" },
-                { n: "15+", l: "Projects", note: "shipped" },
-                { n: "10+", l: "Technologies", note: "mastered" },
-                { n: "∞", l: "Curiosity", note: "always" },
+                { n: "3", l: "Companies", note: "so far" },
+                { n: "8.8", l: "CGPA", note: "B.E. IT" },
               ].map((s) => (
                 <div key={s.l} className="text-center relative">
                   <div
@@ -193,8 +180,8 @@ export default function Hero() {
                   >
                     {s.n}
                   </div>
-                  <div className="field-label text-[0.65rem]">{s.l}</div>
-                  <div className="annotation text-[0.6rem] text-ink-faint">{s.note}</div>
+                  <div className="field-label text-[0.72rem]">{s.l}</div>
+                  <div className="annotation text-[0.72rem] text-ink-faint">{s.note}</div>
                 </div>
               ))}
             </div>
@@ -209,7 +196,7 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
-        <span className="field-label text-[0.6rem]">Scroll</span>
+        <span className="field-label text-[0.72rem]">Scroll</span>
         <div className="w-px h-10 bg-gradient-to-b from-blue-line to-transparent animate-bounce" />
       </div>
     </section>

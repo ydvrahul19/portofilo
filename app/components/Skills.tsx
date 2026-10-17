@@ -1,86 +1,64 @@
-"use client";
+// level: 3 = daily use, 2 = comfortable, 1 = familiar
+type Level = 1 | 2 | 3;
+const levelLabel: Record<Level, string> = { 3: "Daily use", 2: "Comfortable", 1: "Familiar" };
 
-const skillGroups = [
+const skillGroups: { icon: string; title: string; color: string; skills: { name: string; level: Level }[] }[] = [
   {
-    icon: "⚡",
-    title: "Languages",
-    color: "#4a7fb5",
+    icon: "⚡", title: "Languages", color: "#4a7fb5",
     skills: [
-      { name: "JavaScript", pct: 92 },
-      { name: "TypeScript", pct: 85 },
-      { name: "Python", pct: 72 },
-      { name: "Java", pct: 68 },
-      { name: "SQL", pct: 80 },
+      { name: "TypeScript", level: 3 }, { name: "JavaScript", level: 3 },
+      { name: "SQL", level: 3 }, { name: "Java", level: 1 }, { name: "C/C++", level: 1 },
     ],
   },
   {
-    icon: "🎨",
-    title: "Frontend",
-    color: "#c4420a",
+    icon: "🔧", title: "Backend & APIs", color: "#1a7a4a",
     skills: [
-      { name: "React.js", pct: 95 },
-      { name: "Next.js", pct: 90 },
-      { name: "Tailwind", pct: 88 },
-      { name: "Framer Motion", pct: 75 },
-      { name: "HTML/CSS", pct: 95 },
+      { name: "Node.js", level: 3 }, { name: "REST APIs", level: 3 },
+      { name: "tRPC", level: 3 }, { name: "Prisma ORM", level: 3 },
+      { name: "JWT Auth", level: 3 },
     ],
   },
   {
-    icon: "🔧",
-    title: "Backend",
-    color: "#1a7a4a",
+    icon: "🎨", title: "Frontend", color: "#c4420a",
     skills: [
-      { name: "Node.js", pct: 90 },
-      { name: "Express.js", pct: 88 },
-      { name: "Spring Boot", pct: 72 },
-      { name: "GraphQL", pct: 70 },
-      { name: "REST APIs", pct: 92 },
+      { name: "React.js", level: 3 }, { name: "Next.js", level: 3 },
+      { name: "Material UI", level: 3 }, { name: "Tailwind CSS", level: 3 },
+      { name: "Framer Motion", level: 2 },
     ],
   },
   {
-    icon: "🗄️",
-    title: "Database & Cloud",
-    color: "#7c3aed",
+    icon: "🗄️", title: "Databases", color: "#7c3aed",
     skills: [
-      { name: "MongoDB", pct: 88 },
-      { name: "PostgreSQL", pct: 80 },
-      { name: "AWS", pct: 70 },
-      { name: "Docker", pct: 75 },
-      { name: "Firebase", pct: 82 },
+      { name: "PostgreSQL", level: 3 }, { name: "MongoDB", level: 3 }, { name: "MySQL", level: 2 },
     ],
   },
   {
-    icon: "🤖",
-    title: "AI & Emerging",
-    color: "#0891b2",
+    icon: "☁️", title: "Cloud & DevOps", color: "#0891b2",
     skills: [
-      { name: "OpenAI API", pct: 85 },
-      { name: "LangChain", pct: 78 },
-      { name: "RAG", pct: 72 },
-      { name: "Prompt Eng.", pct: 88 },
-      { name: "Chatbots", pct: 82 },
+      { name: "AWS", level: 2 }, { name: "Git/GitHub", level: 3 },
+      { name: "CI/CD", level: 2 }, { name: "Agile/Scrum", level: 3 },
     ],
   },
   {
-    icon: "🛠️",
-    title: "Tools",
-    color: "#b45309",
+    icon: "📐", title: "Fundamentals", color: "#b45309",
     skills: [
-      { name: "Git/GitHub", pct: 92 },
-      { name: "Postman", pct: 88 },
-      { name: "Figma", pct: 72 },
-      { name: "Jira", pct: 80 },
-      { name: "Linux", pct: 75 },
+      { name: "Data Structures & Algorithms", level: 3 }, { name: "System Design", level: 2 },
+      { name: "OOP", level: 3 }, { name: "Operating Systems", level: 2 },
+      { name: "Computer Networks", level: 2 },
     ],
   },
 ];
+
+function chipStyle(color: string, level: Level): React.CSSProperties {
+  if (level === 3) return { background: `${color}1f`, border: `1px solid ${color}`, color: "#1a1510" };
+  if (level === 2) return { background: `${color}0d`, border: `1px solid ${color}80`, color: "#3d3530" };
+  return { background: "transparent", border: `1px dashed ${color}80`, color: "#3d3530" };
+}
 
 export default function Skills() {
   return (
     <section id="skills" className="relative py-24 px-6">
       <div className="max-w-6xl mx-auto">
-
-        {/* Section header */}
         <div className="reveal mb-14">
           <div className="flex items-center gap-4 mb-2">
             <div className="field-label">§ 03 — Skills</div>
@@ -94,18 +72,13 @@ export default function Skills() {
             My Toolkit
           </h2>
           <p className="text-ink-faint mt-2 font-mono text-sm">
-            // Technologies and tools — proficiency measured as % mastery
+            // Grouped by how often I use them — solid = daily, light = comfortable, dashed = familiar
           </p>
         </div>
 
-        {/* Skills grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillGroups.map((group, gi) => (
-            <div
-              key={group.title}
-              className="reveal"
-              style={{ animationDelay: `${gi * 80}ms` }}
-            >
+            <div key={group.title} className="reveal">
               <div
                 className="relative p-5 h-full"
                 style={{
@@ -116,88 +89,32 @@ export default function Skills() {
                   boxShadow: "2px 2px 0 rgba(0,0,0,0.04)",
                 }}
               >
-                {/* Category header */}
                 <div className="flex items-center gap-2 mb-4">
-                  <span className="text-lg">{group.icon}</span>
-                  <span className="font-display font-semibold text-sm text-ink">{group.title}</span>
+                  <span className="text-lg" aria-hidden="true">{group.icon}</span>
+                  <h3 className="font-display font-semibold text-sm text-ink">{group.title}</h3>
                   <div className="flex-1 border-b border-dotted" style={{ borderColor: `${group.color}30` }} />
                 </div>
 
-                {/* Skill bars - hand-drawn style */}
-                <div className="space-y-3 graph-axis pl-4 pb-4">
-                  {group.skills.map((skill, si) => (
-                    <div key={skill.name} className="relative">
-                      <div className="flex items-center justify-between mb-0.5">
-                        <span className="font-mono text-xs text-ink-light">{skill.name}</span>
-                        <span
-                          className="annotation text-xs"
-                          style={{ color: group.color, opacity: 0.7 }}
-                        >
-                          {skill.pct}%
-                        </span>
-                      </div>
-                      {/* Bar track */}
-                      <div
-                        className="relative h-1.5 rounded-none overflow-hidden"
-                        style={{ background: `${group.color}15` }}
-                      >
-                        {/* Fill bar */}
-                        <div
-                          className="h-full skill-bar-fill"
-                          style={{
-                            background: `${group.color}`,
-                            opacity: 0.65,
-                            width: `${skill.pct}%`,
-                            // Slightly uneven top for hand-drawn feel
-                            clipPath:
-                              si % 2 === 0
-                                ? "polygon(0 0, 100% 1px, 100% 100%, 0 100%)"
-                                : "polygon(0 1px, 100% 0, 100% 100%, 0 100%)",
-                          }}
-                        />
-                      </div>
-                      {/* Tick mark */}
-                      <div
-                        className="absolute left-0 -bottom-0.5 h-2 w-px"
-                        style={{ background: `${group.color}40` }}
-                      />
-                    </div>
+                <ul className="flex flex-wrap gap-2 pb-4">
+                  {group.skills.map((skill) => (
+                    <li
+                      key={skill.name}
+                      className="font-mono text-xs px-2.5 py-1"
+                      style={{ ...chipStyle(group.color, skill.level), borderRadius: "2px" }}
+                      title={levelLabel[skill.level]}
+                    >
+                      {skill.name}
+                      <span className="sr-only"> ({levelLabel[skill.level]})</span>
+                    </li>
                   ))}
-                </div>
+                </ul>
 
-                {/* Corner annotation */}
-                <div
-                  className="absolute bottom-2 right-3 field-label opacity-30"
-                  style={{ fontSize: "0.55rem" }}
-                >
+                <div className="absolute bottom-2 right-3 field-label opacity-60" style={{ fontSize: "0.7rem" }}>
                   fig.0{gi + 2}
                 </div>
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Bottom legend */}
-        <div className="reveal mt-8 flex items-center gap-6 justify-center">
-          <div className="dashed-line flex-1 max-w-32" />
-          <div className="flex items-center gap-6">
-            {[
-              { pct: "60–75", label: "Familiar" },
-              { pct: "76–89", label: "Proficient" },
-              { pct: "90+", label: "Expert" },
-            ].map((l) => (
-              <div key={l.label} className="flex items-center gap-1.5">
-                <div
-                  className="w-6 h-1.5"
-                  style={{ background: "rgba(74,127,181,0.5)", opacity: 0.7 }}
-                />
-                <span className="font-mono text-[0.65rem] text-ink-faint">
-                  {l.pct} — {l.label}
-                </span>
-              </div>
-            ))}
-          </div>
-          <div className="dashed-line flex-1 max-w-32" />
         </div>
       </div>
     </section>

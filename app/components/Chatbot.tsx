@@ -1,29 +1,34 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 
+const CONTACT = "ydvrahul5616@gmail.com";
+
 const kb: Record<string, string> = {
-  skill: "🚀 Rahul's core skills:\n• Frontend: React.js, Next.js, TypeScript, Tailwind\n• Backend: Node.js, Express, Spring Boot\n• Database: MongoDB, PostgreSQL, MySQL\n• Cloud: AWS, Docker, Firebase\n• AI/ML: OpenAI API, LangChain, RAG\n\nTrue full-stack — handles your entire project end-to-end! 💪",
-  rate: "💰 Freelance Rates:\n• Hourly: ₹800–₹1500/hr\n• Fixed Price: MVP from ₹25,000\n• Monthly Retainer: Available for long-term projects\n\n📞 Custom quote? WhatsApp: +91 88900 85616",
-  project: "📂 Key Projects:\n• 🏥 DoctorMy — Healthcare consultation platform\n• 📧 Email Sequencer — Marketing automation tool\n• 🧾 Invoice Manager — Billing & finance system\n• 💬 Chatify — Real-time encrypted chat app\n• 👨‍💻 Code Editor — In-browser collaborative IDE\n• ✈️ Travel Buddy — Travel planning app",
-  contact: "📞 Ways to reach Rahul:\n• Call: +91 88900 85616\n• WhatsApp: +91 88900 85616\n• Email: rahulkumaryadav@email.com\n• Location: Pune, India (IST timezone)\n\nTypically responds within 2–4 hours! ⚡",
-  avail: "⏱ Availability:\nRahul is ✅ Currently Available for:\n• Full-stack web development\n• React/Node.js applications\n• MVP development for startups\n• Long-term freelance partnerships\n• Code reviews & consulting",
-  exp: "🏢 Professional \n• Experience:Sparrowhawk System (2023–2025) — Junior Full Stack Developer \n• Oriserve (2025–2026) — Assoc. SDE\n• Freelance (2026–Present) — Full-stack dev\n• AIT Pune (2019–2023) — B.E. IT\n\n3+ years professional experience, 15+ projects shipped!",
-  hire: "🤝 Why hire Rahul?\n✅ 2+ years professional experience\n✅ Full-stack (frontend + backend + DB)\n✅ Clean, maintainable code\n✅ On-time delivery\n✅ Excellent communication\n✅ AI/ML integration capabilities",
+  skill: "Rahul's core skills:\n• Backend: Node.js, REST APIs, tRPC, Prisma, JWT auth\n• Frontend: React, Next.js, Material UI, Tailwind CSS\n• Databases: PostgreSQL, MySQL, MongoDB\n• Cloud/DevOps: AWS, Git/GitHub, CI/CD, Agile\n• Languages: TypeScript, JavaScript, Java, C/C++, SQL\n\nSee the Skills section for more.",
+  project: "Featured projects:\n• DoctorMy — healthcare appointment platform (live)\n• Email Sequencer, Invoice Manager, Chatify, Code Editor, Travel Buddy\n\nMore on GitHub: github.com/ydvrahul06",
+  contact: `Best ways to reach Rahul:\n• Email: ${CONTACT}\n• WhatsApp: use the button in the Contact section\n• LinkedIn: linkedin.com/in/rahul-yadav-679193190`,
+  avail: "Rahul currently works at Accenture and is open to new opportunities and select freelance projects. Send a short note about your project through the Contact form or email and he'll reply.",
+  freelance: `For freelance or project work, email ${CONTACT} with a short description, timeline and budget range, and Rahul will reply with next steps.`,
+  exp: "Experience:\n• Accenture — Software Development Engineer, Full Stack (Feb 2026–Present)\n• Oriserve, Noida — Associate SDE (2025–2026)\n• Sparrowhawk System, Pune — Junior Full Stack Developer (2023–2025)\n• B.E. IT, Army Institute of Technology, Pune (2019–2023, CGPA 8.80)",
+  location: "Rahul is based in Ahmedabad, Gujarat, India (IST, UTC+5:30).",
+  resume: "You can download Rahul's resume with the “Download Resume” button at the top of the page.",
+  hire: "Why hire Rahul?\n• 3+ years of professional full-stack experience\n• Node.js/TypeScript backends + React/Next.js frontends, PostgreSQL/MongoDB\n• Clean, maintainable, tested code\n• Comfortable working in Agile teams",
 };
 
 function getBotReply(msg: string): string {
   const m = msg.toLowerCase();
-  if (m.match(/skill|tech|know|language|stack/)) return kb.skill;
-  if (m.match(/rate|cost|price|charge|money|fee|rupee|₹/)) return kb.rate;
-  if (m.match(/project|work|built|portfolio|show/)) return kb.project;
-  if (m.match(/contact|reach|phone|call|whatsapp|email/)) return kb.contact;
-  if (m.match(/avail|free|time|busy|hire now|start|when/)) return kb.avail;
-  if (m.match(/exp|job|work history|oriserve|company|year/)) return kb.exp;
-  if (m.match(/why hire|why rahul|recommend|good|best|quality/)) return kb.hire;
-  if (m.match(/hi|hello|hey|namaste/)) return "👋 Hey! Great to meet you! I'm Rahul's AI assistant. Ask me about his skills, projects, rates, or how to get in touch!";
-  if (m.match(/thank/)) return "😊 You're welcome! Feel free to WhatsApp Rahul: +91 88900 85616 🚀";
-  if (m.match(/location|where|pune/)) return "📍 Rahul is based in Pune, Maharashtra, India (IST, UTC+5:30). Works with clients globally!";
-  return "🤔 Not sure about that specific detail. Contact Rahul directly:\n📞 +91 88900 85616\n💬 WhatsApp him for a quick reply!";
+  if (/\b(resume|cv)\b/.test(m)) return kb.resume;
+  if (/\b(freelance|rate|rates|price|pricing|quote|cost|budget|charge)\b/.test(m)) return kb.freelance;
+  if (/\b(contact|reach|phone|call|whatsapp|email|mail|linkedin)\b/.test(m)) return kb.contact;
+  if (/\b(skill|skills|tech|stack|language|languages|know|technologies)\b/.test(m)) return kb.skill;
+  if (/\b(project|projects|portfolio|built|build)\b/.test(m)) return kb.project;
+  if (/\b(avail|available|availability|hire|hiring|opportunit\w*)\b/.test(m)) return kb.avail;
+  if (/\b(experience|job|jobs|company|companies|accenture|oriserve|sparrowhawk|education|degree)\b/.test(m)) return kb.exp;
+  if (/\b(location|where|based|city|ahmedabad|timezone)\b/.test(m)) return kb.location;
+  if (/\bwhy\b/.test(m)) return kb.hire;
+  if (/\bthank(s| you)?\b/.test(m)) return "You're welcome! Feel free to reach out by email anytime.";
+  if (/^\s*(hi|hello|hey|namaste)\b/.test(m)) return "Hi! I'm an automated FAQ helper for Rahul's portfolio. Ask about his skills, projects, experience or how to get in touch.";
+  return `I only know the basics from this portfolio. For anything else, email Rahul at ${CONTACT}.`;
 }
 
 interface Message {
@@ -31,12 +36,12 @@ interface Message {
   isUser: boolean;
 }
 
-const suggestions = ["💼 What skills?", "💰 Freelance rates?", "📂 Show projects", "📞 How to contact?", "⏱ Availability?"];
+const suggestions = ["💼 What skills?", "🛠 Freelance work?", "📂 Show projects", "📞 How to contact?", "⏱ Availability?"];
 
 export default function Chatbot() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { text: "👋 Hi! I'm Rahul's AI assistant. Ask me about his skills, experience, projects, or how to hire him!", isUser: false },
+    { text: "Hi! I'm a simple FAQ helper. Ask about Rahul's skills, experience, projects, or how to contact him.", isUser: false },
   ]);
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
@@ -73,12 +78,13 @@ export default function Chatbot() {
           boxShadow: "4px 4px 0 rgba(0,0,0,0.15)",
           transform: open ? "rotate(45deg)" : "none",
         }}
-        aria-label="Toggle chat"
+        aria-label={open ? "Close FAQ chat" : "Open FAQ chat"}
+        aria-expanded={open}
       >
-        <span className="text-paper text-xl font-mono">{open ? "✕" : "🤖"}</span>
+        <span className="text-paper text-xl font-mono" aria-hidden="true">{open ? "✕" : "💬"}</span>
         {notif && !open && (
           <div
-            className="absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center font-mono text-[0.6rem] font-bold"
+            className="absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center font-mono text-[0.72rem] font-bold"
             style={{ background: "#f59e0b", borderRadius: "2px", color: "#000" }}
           >
             1
@@ -90,10 +96,11 @@ export default function Chatbot() {
       <div
         className="fixed bottom-24 right-6 z-50 flex flex-col overflow-hidden transition-all duration-300"
         style={{
-          width: "360px",
+          width: "min(360px, calc(100vw - 2rem))",
           maxHeight: open ? "520px" : "0px",
           opacity: open ? 1 : 0,
           pointerEvents: open ? "all" : "none",
+          visibility: open ? "visible" : "hidden",
           background: "#faf7f2",
           border: "1px solid rgba(74,127,181,0.25)",
           borderRadius: "2px",
@@ -110,16 +117,16 @@ export default function Chatbot() {
             className="w-8 h-8 flex items-center justify-center text-sm"
             style={{ background: "rgba(255,255,255,0.2)", borderRadius: "2px" }}
           >
-            🤖
+            💬
           </div>
           <div className="flex-1">
-            <div className="font-mono text-xs font-semibold text-paper">Rahul&apos;s AI Assistant</div>
+            <div className="font-mono text-xs font-semibold text-paper">Portfolio FAQ</div>
             <div className="flex items-center gap-1.5 mt-0.5">
               <div className="w-1.5 h-1.5 rounded-full bg-green-300 animate-pulse" />
-              <span className="font-mono text-[0.6rem] text-paper/70">Online — Ask me anything!</span>
+              <span className="font-mono text-[0.72rem] text-paper/70">Automated answers</span>
             </div>
           </div>
-          <button onClick={() => setOpen(false)} className="text-paper/70 hover:text-paper font-mono text-sm">✕</button>
+          <button onClick={() => setOpen(false)} aria-label="Close chat" className="text-paper/70 hover:text-paper font-mono text-sm">✕</button>
         </div>
 
         {/* Messages */}
@@ -171,7 +178,7 @@ export default function Chatbot() {
               <button
                 key={s}
                 onClick={() => sendMessage(s.replace(/^[^\s]+ /, ""))}
-                className="font-mono text-[0.65rem] px-2.5 py-1 transition-all"
+                className="font-mono text-[0.72rem] px-2.5 py-1 transition-all"
                 style={{
                   background: "rgba(74,127,181,0.07)",
                   border: "1px solid rgba(74,127,181,0.25)",
@@ -193,13 +200,14 @@ export default function Chatbot() {
           style={{ borderTop: "1px solid rgba(74,127,181,0.15)" }}
         >
           <input
-            className="flex-1 font-mono text-xs text-ink px-3 py-2 outline-none"
+            aria-label="Ask a question"
+            className="flex-1 font-mono text-xs text-ink px-3 py-2 "
             style={{
               background: "#fefcf9",
               border: "1px solid rgba(74,127,181,0.2)",
               borderRadius: "2px",
             }}
-            placeholder="Ask anything about Rahul..."
+            placeholder="Ask about Rahul..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
@@ -208,6 +216,7 @@ export default function Chatbot() {
           />
           <button
             onClick={() => sendMessage()}
+            aria-label="Send message"
             className="w-9 h-9 flex items-center justify-center text-paper text-sm transition-opacity hover:opacity-85 flex-shrink-0"
             style={{ background: "#c4420a", borderRadius: "2px" }}
           >

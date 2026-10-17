@@ -18,7 +18,7 @@ const config: Config = {
         paper: "#f5f0e8",
         ink: "#1a1510",
         "ink-light": "#3d3530",
-        "ink-faint": "#8b7d6b",
+        "ink-faint": "#6f6353",
         "ink-ghost": "#c4b8a8",
         blueprint: "#1a3a5c",
         "blue-line": "#4a7fb5",

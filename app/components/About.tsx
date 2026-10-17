@@ -71,14 +71,14 @@ export default function About() {
                   { k: "Role", v: "Full-Stack Dev" },
                   { k: "Location", v: "Ahmedabad, India" },
                   { k: "Degree", v: "B.E. IT — AIT Pune" },
-                  { k: "Company", v: "Oriserve (2025–26)" },
-                  { k: "Status", v: "✓ Available Now" },
+                  { k: "Company", v: "Accenture (2026–Now)" },
+                  { k: "Status", v: "✓ Open to freelance" },
                 ].map((item) => (
                   <div
                     key={item.k}
                     className="flex items-baseline gap-2 py-2 border-b border-blue-line/10 last:border-0"
                   >
-                    <span className="field-label w-24 flex-shrink-0 text-[0.62rem]">{item.k}</span>
+                    <span className="field-label w-24 flex-shrink-0 text-[0.72rem]">{item.k}</span>
                     <div className="flex-1 border-b border-dotted border-blue-line/20 mx-1" />
                     <span className="font-mono text-xs text-ink">{item.v}</span>
                   </div>
@@ -89,14 +89,14 @@ export default function About() {
                   <span className="annotation text-xl text-ink-light" style={{ transform: "rotate(-2deg)", display: "inline-block" }}>
                     Rahul K.Y.
                   </span>
-                  <span className="field-label text-[0.55rem]">2026</span>
+                  <span className="field-label text-[0.72rem]">2026</span>
                 </div>
               </div>
             </div>
 
             {/* Hobby tags below card */}
             <div className="mt-4 flex flex-wrap gap-2">
-              {["🎮 Gaming", "✍ Tech Blogging", "✈ Travelling", "⌨ Open Source", "🧠 Problem Solving"].map(
+              {["🎮 Gaming", "✈ Travelling", "🧠 Problem Solving"].map(
                 (h) => (
                   <span
                     key={h}
@@ -139,9 +139,9 @@ export default function About() {
               </p>
               <p className="text-ink-light leading-7 mb-4">
                 With <strong className="text-ink">3+ years of professional experience</strong>,
-                I&apos;ve honed my skills building scalable, efficient software at Oriserve as an
-                Associate Software Development Engineer — contributing to impactful projects
-                alongside talented teams.
+                I&apos;ve built web applications at Sparrowhawk System and Oriserve, and I now work
+                as a Software Development Engineer at Accenture — shipping full-stack features
+                from requirements to deployment. I also mentor students and professionals at Scaler Academy.
               </p>
               <p className="text-ink-light leading-7">
                 I&apos;m driven by curiosity and love turning complex problems into elegant solutions.
@@ -169,21 +169,22 @@ export default function About() {
             >
               <div className="annotation text-xs text-accent mb-2">— personal motto</div>
               <blockquote className="font-sketch text-xl text-ink-light leading-relaxed">
-                "Strive not just to build software, but to create solutions that inspire and make a difference!"
+                &ldquo;Strive not just to build software, but to create solutions that inspire and make a difference!&rdquo;
               </blockquote>
             </div>
 
             {/* Quick facts grid */}
             <div className="grid grid-cols-2 gap-3">
               {[
-                { icon: "🎓", title: "Education", detail: "B.E. IT — AIT Pune, 2023" },
-                { icon: "💼", title: "Experience", detail: "Sparrowhawk System . 2023–2025" },
-                { icon: "💼", title: "Experience", detail: "Oriserve · 2025–2026" },
-                { icon: "🚀", title: "Freelance", detail: "Available since 2026" },
+                { icon: "🎓", title: "Education", detail: "B.E. IT — AIT Pune · CGPA 8.80" },
+                { icon: "💼", title: "Current", detail: "Accenture · 2026–Present" },
+                { icon: "💼", title: "Previous", detail: "Oriserve · 2025–2026" },
+                { icon: "💼", title: "Earlier", detail: "Sparrowhawk System · 2023–2025" },
+                { icon: "🚀", title: "Freelance", detail: "Open to select projects" },
                 { icon: "📍", title: "Location", detail: "Ahmedabad, Gujarat, India" },
               ].map((fact) => (
                 <div
-                  key={fact.title}
+                  key={fact.detail}
                   className="p-3 bracket-corner"
                   style={{
                     background: "rgba(74,127,181,0.03)",
@@ -193,7 +194,7 @@ export default function About() {
                   }}
                 >
                   <div className="text-lg mb-1">{fact.icon}</div>
-                  <div className="field-label text-[0.62rem] mb-0.5">{fact.title}</div>
+                  <div className="field-label text-[0.72rem] mb-0.5">{fact.title}</div>
                   <div className="font-mono text-xs text-ink">{fact.detail}</div>
                 </div>
               ))}

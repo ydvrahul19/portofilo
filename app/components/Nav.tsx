@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
+import { SITE } from "../site";
 
 const links = [
   { href: "#home",       label: "Home" },
@@ -17,7 +18,7 @@ export default function Nav() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -39,13 +40,24 @@ export default function Nav() {
             <span className="font-display font-semibold text-sm text-ink tracking-tight">
               Rahul Kumar Yadav
             </span>
-            <span className="field-label text-[0.6rem]">Full-Stack Developer</span>
+            <span className="field-label text-[0.72rem]">Full-Stack Developer</span>
           </div>
         </a>
 
         {/* Desktop Links */}
         <ul className="hidden md:flex items-center gap-1">
-          {links.map((link) => (
+          {[...links.filter((l) => !l.cta), { href: "#resume", label: "", cta: false, resume: true }, ...links.filter((l) => l.cta)].map((link: any) =>
+            link.resume ? (
+              <li key="resume">
+                <a
+                  href={SITE.resume}
+                  download
+                  className="px-4 py-2 text-sm font-mono tracking-wide text-ink-light hover:text-accent"
+                >
+                  Resume ↓
+                </a>
+              </li>
+            ) : (
             <li key={link.href}>
               <a
                 href={link.href}
@@ -59,7 +71,8 @@ export default function Nav() {
                 {link.label}
               </a>
             </li>
-          ))}
+            )
+          )}
         </ul>
 
         {/* Mobile Hamburger */}
@@ -67,6 +80,8 @@ export default function Nav() {
           className="md:hidden flex flex-col gap-1.5 p-2"
           onClick={() => setOpen(!open)}
           aria-label="Menu"
+          aria-expanded={open}
+          aria-controls="mobile-menu"
         >
           <span className={`w-6 h-0.5 bg-ink transition-all duration-300 ${open ? "rotate-45 translate-y-2" : ""}`} />
           <span className={`w-6 h-0.5 bg-ink transition-all duration-300 ${open ? "opacity-0" : ""}`} />
@@ -76,7 +91,7 @@ export default function Nav() {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="md:hidden bg-paper/98 border-t border-blue-line/20 px-6 py-4">
+        <div id="mobile-menu" className="md:hidden bg-paper/98 border-t border-blue-line/20 px-6 py-4">
           {links.map((link) => (
             <a
               key={link.href}
@@ -88,6 +103,14 @@ export default function Nav() {
               {link.label}
             </a>
           ))}
+          <a
+            href={SITE.resume}
+            download
+            className="block py-3 font-mono text-sm text-ink-light hover:text-accent"
+            onClick={() => setOpen(false)}
+          >
+            <span className="text-blue-line mr-2">↓</span>Resume
+          </a>
         </div>
       )}
     </nav>

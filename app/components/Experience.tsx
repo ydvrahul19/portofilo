@@ -2,7 +2,7 @@ const experiences = [
   {
     company: "Accenture",
     role: "Software Development Engineer (Full Stack)",
-    period: "2026 – Present",
+    period: "Feb 2026 – Present",
     status: "current",
     desc: [
       "Develop full-stack features using React and Next.js on the frontend and Node.js and TypeScript on the backend, from requirement analysis through development, testing and deployment.",
@@ -10,43 +10,53 @@ const experiences = [
       "Troubleshoot and fix issues across the frontend, backend and database layers, and write clean, maintainable, tested code.",
       "Collaborate with cross-functional teams in an Agile workflow, including code reviews, sprint planning and release support.",
     ],
-    tags: ["React", "Next.js", "Node.js", "TypeScript", "Full-Stack"],
+    tags: ["React", "Next.js", "Node.js", "TypeScript", "PostgreSQL", "MongoDB"],
     note: "ongoing",
   },
   {
-    company: "Oriserve",
+    company: "Oriserve, Noida",
     role: "Associate Software Development Engineer",
-    period: "2025 – 2026",
+    period: "Feb 2025 – Feb 2026",
     status: "past",
     desc: [
-      "Built and maintained scalable enterprise software used by thousands of users, developing RESTful APIs, optimizing database queries, and contributing to key architectural decisions across core product modules.",
-      "Diagnosed and resolved complex software issues end-to-end — reproducing bugs, writing optimized SQL queries for deep database investigation, and delivering timely fixes to maintain uninterrupted system operability.",
-      "Consistently met SLAs and KPIs including response time, resolution speed, and software quality benchmarks, directly contributing to high customer satisfaction and product reliability.",
+      "Diagnosed and fixed production issues by reproducing bugs, tracing root causes across frontend and backend, and shipping fixes and workarounds that kept services running.",
+      "Built backend APIs and frontend enhancements in a JavaScript/TypeScript stack while resolving complex software issues.",
+      "Collaborated with cross-functional teammates in an Agile workflow, including code reviews and release support.",
     ],
-    tags: ["Node.js", "React", "MongoDB", "REST APIs", "Agile/Scrum"],
-    note: "1 years",
+    tags: ["Node.js", "TypeScript", "React", "REST APIs", "Agile/Scrum"],
+    note: "1 year",
   },
   {
-    company: "Sparrowhawk System",
+    company: "Sparrowhawk System, Pune",
     role: "Junior Full Stack Developer",
-    period: "2023 – 2025",
+    period: "Apr 2023 – Jan 2025",
     status: "past",
     desc: [
-      "Integrated TRPC and Prisma into a Next.js environment, enhancing database interactions, reducing query times by 40% and improving overall app performance by 25% through creating and modifying Prisma models.",
-      "Architected scalable backend applications with Next.js, improving server response times by 30% and increasing system throughput by 20%, implementing performance optimization best practices.",
-      "Implemented responsive designs and optimized performance.",
+      "Integrated tRPC and Prisma into a Next.js application and reworked Prisma models, cutting query times by 40% and improving overall app performance by 25%.",
+      "Delivered six new frontend features with React and Material UI, improving user engagement by 30% across platforms after launch.",
     ],
-    tags: ["Node.js", "React", "MongoDB", "REST APIs", "Next.js"],
-    note: "2 years",
+    tags: ["Next.js", "tRPC", "Prisma", "React", "Material UI"],
+    note: "1 yr 9 mo",
+  },
+  {
+    company: "Microsoft, Pune",
+    role: "Engage Mentorship Program",
+    period: "Jun – Aug 2021",
+    status: "past",
+    desc: [
+      "Built a collaboration app with screen sharing, audio/video switching and chat, applying Agile and CI/CD practices that cut time-to-market by 20% and raised engagement by 30%.",
+    ],
+    tags: ["Agile", "CI/CD", "Real-time"],
+    note: "3 months",
   },
   {
     company: "Army Institute of Technology",
     role: "B.E. — Information Technology",
     period: "2019 – 2023",
     status: "edu",
-    desc: "Graduated with a strong foundation in data structures, algorithms, software engineering, and computer networks. Led multiple team projects and participated in hackathons, winning recognition for innovative solutions.",
+    desc: "CGPA 8.80/10. Strong foundation in data structures, algorithms, DBMS, operating systems and computer networks. Led team projects and participated in hackathons.",
     tags: ["Data Structures", "Algorithms", "DBMS", "OS", "Networking"],
-    note: "4 years",
+    note: "CGPA 8.80",
   },
 ];
 
@@ -121,7 +131,7 @@ export default function Experience() {
                 >
                   {/* Entry number annotation */}
                   <div
-                    className="absolute -top-2 -left-2 field-label text-[0.6rem] bg-paper px-1"
+                    className="absolute -top-2 -left-2 field-label text-[0.72rem] bg-paper px-1"
                     style={{ color: "rgba(74,127,181,0.5)" }}
                   >
                     entry.0{i + 1}

@@ -2,12 +2,12 @@
 import { useEffect, useRef } from "react";
 
 const SKILLS = [
-  { n: "React.js",   p: 95, c: "#58a6ff" },
-  { n: "Next.js",    p: 90, c: "#d2a8ff" },
-  { n: "Node.js",    p: 90, c: "#3fb950" },
-  { n: "TypeScript", p: 85, c: "#f0883e" },
-  { n: "MongoDB",    p: 88, c: "#ff7b72" },
-  { n: "AWS/Docker", p: 75, c: "#a5d6ff" },
+  { n: "React.js",   p: 100, l: "daily", c: "#58a6ff" },
+  { n: "Next.js",    p: 100, l: "daily", c: "#d2a8ff" },
+  { n: "Node.js",    p: 100, l: "daily", c: "#3fb950" },
+  { n: "TypeScript", p: 100, l: "daily", c: "#f0883e" },
+  { n: "PostgreSQL", p: 66,  l: "solid", c: "#ff7b72" },
+  { n: "AWS",        p: 33,  l: "familiar", c: "#a5d6ff" },
 ];
 
 const BLOCKS = [
@@ -16,22 +16,20 @@ const BLOCKS = [
   { type: "blank" },
   { type: "line",  h: `<span class="tx"><span class="kw">NAME    </span> <span class="nm">Rahul Kumar Yadav</span></span>` },
   { type: "line",  h: `<span class="tx"><span class="kw">ROLE    </span> <span class="nm">Full-Stack Developer</span></span>` },
-  { type: "line",  h: `<span class="tx"><span class="kw">LOCATION</span> <span class="st">Pune, Maharashtra, India</span></span>` },
+  { type: "line",  h: `<span class="tx"><span class="kw">LOCATION</span> <span class="st">Ahmedabad, Gujarat, India</span></span>` },
   { type: "line",  h: `<span class="tx"><span class="kw">DEGREE  </span> <span class="st">B.E. IT — AIT Pune (2023)</span></span>` },
   { type: "line",  h: `<span class="tx"><span class="kw">COMPANY </span> <span class="nm">Sparrowhawk System · 2023–2025</span></span>` },
   { type: "line",  h: `<span class="tx"><span class="kw">COMPANY </span> <span class="nm">Oriserve · 2025–2026</span></span>` },
-  { type: "line",  h: `<span class="tx"><span class="kw">FOUNDER </span> <span class="ok">LocalRizz · 2026–Present</span></span>` },
-  { type: "line",  h: `<span class="tx"><span class="kw">EXP     </span> <span class="nm">3+ yrs · 15+ projects shipped</span></span>` },
-  { type: "line",  h: `<span class="tx"><span class="kw">PHONE   </span> <span class="st">+91 88900 85616</span></span>` },
-  { type: "line",  h: `<span class="tx"><span class="kw">STATUS  </span> <span class="ok">✓  OPEN TO WORK</span></span>` },
+  { type: "line",  h: `<span class="tx"><span class="kw">COMPANY </span> <span class="ok">Accenture · 2026–Present</span></span>` },
+  { type: "line",  h: `<span class="tx"><span class="kw">EXP     </span> <span class="nm">3+ years · full-stack</span></span>` },
+  { type: "line",  h: `<span class="tx"><span class="kw">STATUS  </span> <span class="ok">✓  OPEN TO OPPORTUNITIES</span></span>` },
   { type: "blank" },
   { type: "cmd",   h: `<span class="pr">$</span><span class="tx"> <span class="fn">skills</span> <span class="st">--visual</span></span>` },
   { type: "skills" },
   { type: "blank" },
   { type: "cmd",   h: `<span class="pr">$</span><span class="tx"> <span class="fn">stack</span> <span class="st">--preferred</span></span>` },
   { type: "line",  h: `<span class="tx"><span class="cm">full-stack  </span><span class="nm">React + Node.js + MongoDB</span></span>` },
-  { type: "line",  h: `<span class="tx"><span class="cm">modern      </span><span class="nm">Next.js + TypeScript + PostgreSQL</span></span>` },
-  { type: "line",  h: `<span class="tx"><span class="cm">ai-powered  </span><span class="nm">Next.js + OpenAI + LangChain</span></span>` },
+  { type: "line",  h: `<span class="tx"><span class="cm">modern      </span><span class="nm">Next.js + tRPC + Prisma + PostgreSQL</span></span>` },
   { type: "blank" },
   { type: "cmd",   h: `<span class="pr">$</span><span class="tx"> <span class="fn">projects</span> <span class="st">--featured</span></span>` },
   { type: "line",  h: `<span class="tx"><span class="ok">01</span> <span class="nm">DoctorMy</span>        <span class="cm">Healthcare platform</span></span>` },
@@ -43,8 +41,8 @@ const BLOCKS = [
   { type: "blank" },
   { type: "cmd",   h: `<span class="pr">$</span><span class="tx"> <span class="fn">contact</span> <span class="st">--all</span></span>` },
   { type: "line",  h: `<span class="tx"><span class="cm">→ WhatsApp  </span><span class="ok">wa.me/918890085616</span></span>` },
-  { type: "line",  h: `<span class="tx"><span class="cm">→ Email     </span><span class="ok">rahulkumaryadav@email.com</span></span>` },
-  { type: "line",  h: `<span class="tx"><span class="cm">→ GitHub    </span><span class="st">github.com/ydvrahul19</span></span>` },
+  { type: "line",  h: `<span class="tx"><span class="cm">→ Email     </span><span class="ok">ydvrahul5616@gmail.com</span></span>` },
+  { type: "line",  h: `<span class="tx"><span class="cm">→ GitHub    </span><span class="st">github.com/ydvrahul06</span></span>` },
   { type: "line",  h: `<span class="tx"><span class="cm">→ LinkedIn  </span><span class="st">linkedin.com/in/rahul-yadav-679193190</span></span>` },
   { type: "blank" },
   { type: "divider" },
@@ -356,15 +354,15 @@ export default function DevProfileFig() {
 
           {/* Corner labels */}
           <div style={{ position:"absolute", bottom:5, left:10, fontSize:8, letterSpacing:".1em", textTransform:"uppercase", color:"rgba(74,127,181,0.38)", fontFamily:"'DM Mono',monospace" }}>fig.01</div>
-          <div style={{ position:"absolute", bottom:5, right:10, fontSize:8, letterSpacing:".1em", textTransform:"uppercase", color:"rgba(74,127,181,0.38)", fontFamily:"'DM Mono',monospace" }}>2025</div>
+          <div style={{ position:"absolute", bottom:5, right:10, fontSize:8, letterSpacing:".1em", textTransform:"uppercase", color:"rgba(74,127,181,0.38)", fontFamily:"'DM Mono',monospace" }}>2026</div>
         </div>
 
         <div className="dpf-botbar">
           <div style={{ display:"flex", alignItems:"center" }}>
             <span className="dpf-sdot"/>
-            <span className="dpf-fl">online · available for hire · Ahmedabad, india</span>
+            <span className="dpf-fl">open to opportunities · Ahmedabad, India</span>
           </div>
-          <span className="dpf-an">+91 88900 85616</span>
+          <span className="dpf-an">ydvrahul5616@gmail.com</span>
         </div>
       </div>
     </>

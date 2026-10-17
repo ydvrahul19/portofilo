@@ -1,3 +1,5 @@
+import { SITE } from "../site";
+
 export default function Footer() {
   return (
     <footer
@@ -19,40 +21,31 @@ export default function Footer() {
             </div>
             <div>
               <div className="font-display font-semibold text-sm text-ink">Rahul Kumar Yadav</div>
-              <div className="field-label text-[0.6rem]">Full-Stack Developer · Pune, India</div>
+              <div className="field-label text-[0.72rem]">Full-Stack Engineer · Ahmedabad, India</div>
             </div>
           </div>
 
           {/* Social links */}
           <div className="flex items-center gap-3">
             {[
-              { icon: "GH", label: "GitHub", href: "https://github.com/ydvrahul19" },
-              { icon: "LI", label: "LinkedIn", href: "https://www.linkedin.com/in/rahul-yadav-679193190/" },
-              { icon: "TW", label: "Twitter", href: "https://twitter.com" },
-              { icon: "MD", label: "Medium", href: "https://medium.com" },
-              { icon: "WA", label: "WhatsApp", href: "https://wa.me/918890085616", highlight: true },
+              { icon: "GH", label: "GitHub", href: SITE.github },
+              { icon: "LI", label: "LinkedIn", href: SITE.linkedin },
+              { icon: "@", label: "Email", href: `mailto:${SITE.email}` },
+              { icon: "WA", label: "WhatsApp", href: SITE.whatsapp, highlight: true },
             ].map((s) => (
               <a
                 key={s.label}
                 href={s.href}
-                target="_blank"
                 rel="noreferrer"
-                className="w-9 h-9 flex items-center justify-center font-mono text-xs font-semibold transition-all duration-200"
+                className={`social-btn ${s.highlight ? "wa" : ""} w-9 h-9 flex items-center justify-center font-mono text-xs font-semibold`}
                 style={{
-                  background: s.highlight ? "rgba(37,211,102,0.12)" : "rgba(74,127,181,0.06)",
                   border: `1px solid ${s.highlight ? "rgba(37,211,102,0.4)" : "rgba(74,127,181,0.2)"}`,
-                  color: s.highlight ? "#16a34a" : "#4a7fb5",
+                  color: s.highlight ? "#15803d" : "#2f5f93",
                   borderRadius: "2px",
                 }}
                 title={s.label}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.background = s.highlight ? "rgba(37,211,102,0.2)" : "rgba(74,127,181,0.12)";
-                  (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.background = s.highlight ? "rgba(37,211,102,0.12)" : "rgba(74,127,181,0.06)";
-                  (e.currentTarget as HTMLAnchorElement).style.transform = "none";
-                }}
+                aria-label={s.label}
+                target={s.href.startsWith("mailto:") ? undefined : "_blank"}
               >
                 {s.icon}
               </a>
@@ -70,15 +63,15 @@ export default function Footer() {
         {/* Bottom row */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-mono text-xs text-ink-faint">
-            Built with ❤️ by <strong className="text-ink">Rahul Kumar Yadav</strong> · Next.js + Tailwind CSS
+            Built by <strong className="text-ink">Rahul Kumar Yadav</strong> · Next.js + Tailwind CSS
           </p>
           <div className="flex items-center gap-3">
-            <span className="field-label text-[0.6rem]">© 2026 All Rights Reserved</span>
+            <span className="field-label text-[0.72rem]">© 2026 All Rights Reserved</span>
             <div
               className="stamp"
-              style={{ fontSize: "0.5rem", padding: "2px 6px", transform: "rotate(-1.5deg)" }}
+              style={{ fontSize: "0.7rem", padding: "2px 6px", transform: "rotate(-1.5deg)" }}
             >
-              v2.0
+              v2.1
             </div>
           </div>
         </div>

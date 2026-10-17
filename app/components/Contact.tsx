@@ -1,13 +1,36 @@
 "use client";
 import { useState } from "react";
+import { SITE } from "../site";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
-  const [sent, setSent] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "", website: "" });
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [error, setError] = useState("");
 
-  const handleSubmit = () => {
-    if (!form.name || !form.email || !form.message) return alert("Please fill all required fields.");
-    setSent(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.name || !form.email || !form.message) {
+      setStatus("error");
+      setError("Please fill in your name, email and message.");
+      return;
+    }
+    setStatus("sending");
+    setError("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Could not send message.");
+      }
+      setStatus("sent");
+    } catch (err) {
+      setStatus("error");
+      setError(err instanceof Error ? err.message : "Could not send message.");
+    }
   };
 
   return (
@@ -73,10 +96,10 @@ export default function Contact() {
 
               <div className="px-5 py-4 space-y-0">
                 {[
-                  { icon: "☎", label: "Phone / Call", value: "+91 88900 85616", href: "tel:+918890085616", color: "#1a7a4a" },
-                  { icon: "●", label: "WhatsApp", value: "+91 88900 85616", href: "https://wa.me/918890085616", color: "#16a34a" },
-                  { icon: "✉", label: "Email", value: "rahulkumaryadav@email.com", href: "mailto:rahulkumaryadav@email.com", color: "#4a7fb5" },
-                  { icon: "◎", label: "Location", value: "Pune, Maharashtra, India", href: null, color: "#7c3aed" },
+                  { icon: "✉", label: "Email", value: SITE.email, href: `mailto:${SITE.email}`, color: "#4a7fb5" },
+                  { icon: "●", label: "WhatsApp", value: SITE.phone, href: SITE.whatsapp, color: "#16a34a" },
+                  { icon: "in", label: "LinkedIn", value: "rahul-yadav-679193190", href: SITE.linkedin, color: "#0a66c2" },
+                  { icon: "◎", label: "Location", value: SITE.location, href: null, color: "#7c3aed" },
                 ].map((item) => (
                   <div
                     key={item.label}
@@ -95,7 +118,7 @@ export default function Contact() {
                       {item.icon}
                     </div>
                     <div className="min-w-0">
-                      <div className="field-label text-[0.62rem] mb-0.5">{item.label}</div>
+                      <div className="field-label text-[0.72rem] mb-0.5">{item.label}</div>
                       {item.href ? (
                         <a
                           href={item.href}
@@ -125,7 +148,7 @@ export default function Contact() {
                   >
                     <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                     <span className="font-mono text-xs text-green-700 font-semibold tracking-widest uppercase">
-                      Available Now
+                      Open to opportunities
                     </span>
                   </div>
                 </div>
@@ -134,14 +157,7 @@ export default function Contact() {
 
             {/* Action buttons */}
             <div className="space-y-2.5">
-              <a
-                href="tel:+918890085616"
-                className="flex items-center justify-center gap-2 w-full py-3 font-mono text-sm font-semibold text-paper transition-opacity hover:opacity-90"
-                style={{ background: "#16a34a", borderRadius: "2px" }}
-              >
-                ☎ Call Now
-              </a>
-              <a
+                            <a
                 href="https://wa.me/918890085616?text=Hi%20Rahul!%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project."
                 target="_blank"
                 rel="noreferrer"
@@ -151,9 +167,9 @@ export default function Contact() {
                 ● Chat on WhatsApp
               </a>
               <a
-                href="mailto:rahulkumaryadav@email.com"
-                className="flex items-center justify-center gap-2 w-full py-3 font-mono text-sm text-blueprint border border-blue-line/30 hover:bg-blue-faint/20 transition-colors"
-                style={{ borderRadius: "2px" }}
+                href={`mailto:${SITE.email}`}
+                className="flex items-center justify-center gap-2 w-full py-3 font-mono text-sm font-semibold text-paper transition-opacity hover:opacity-90"
+                style={{ background: "#1a3a5c", borderRadius: "2px" }}
               >
                 ✉ Send an Email
               </a>
@@ -180,21 +196,29 @@ export default function Contact() {
                 <div className="annotation text-xs text-accent">required *</div>
               </div>
 
-              <div className="p-6 space-y-5">
+              <form onSubmit={handleSubmit} noValidate className="p-6 space-y-5">
+                {/* honeypot — hidden from humans */}
+                <div aria-hidden="true" style={{ position: "absolute", left: "-9999px" }}>
+                  <label>Website<input tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => setForm({ ...form, website: e.target.value })} /></label>
+                </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   {[
-                    { id: "name", label: "Your Name *", placeholder: "John Doe", type: "text" },
-                    { id: "email", label: "Your Email *", placeholder: "john@email.com", type: "email" },
+                    { id: "name", label: "Your Name *", placeholder: "John Doe", type: "text", ac: "name" },
+                    { id: "email", label: "Your Email *", placeholder: "john@email.com", type: "email", ac: "email" },
                   ].map((field) => (
                     <div key={field.id}>
-                      <label className="field-label text-[0.65rem] block mb-1.5">{field.label}</label>
+                      <label htmlFor={`c-${field.id}`} className="field-label text-[0.7rem] block mb-1.5">{field.label}</label>
                       <input
+                        id={`c-${field.id}`}
+                        name={field.id}
+                        autoComplete={field.ac}
+                        required
                         type={field.type}
                         placeholder={field.placeholder}
                         value={form[field.id as keyof typeof form]}
                         onChange={(e) => setForm({ ...form, [field.id]: e.target.value })}
-                        className="w-full font-mono text-sm text-ink px-3 py-2.5 outline-none transition-all"
+                        className="w-full font-mono text-sm text-ink px-3 py-2.5 transition-all"
                         style={{
                           background: "#fefcf9",
                           border: "1px solid rgba(74,127,181,0.2)",
@@ -208,13 +232,15 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="field-label text-[0.65rem] block mb-1.5">Subject</label>
+                  <label htmlFor="c-subject" className="field-label text-[0.7rem] block mb-1.5">Subject</label>
                   <input
+                    id="c-subject"
+                    name="subject"
                     type="text"
                     placeholder="Project Discussion / Freelance Work"
                     value={form.subject}
                     onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                    className="w-full font-mono text-sm text-ink px-3 py-2.5 outline-none transition-all"
+                    className="w-full font-mono text-sm text-ink px-3 py-2.5 transition-all"
                     style={{
                       background: "#fefcf9",
                       border: "1px solid rgba(74,127,181,0.2)",
@@ -226,13 +252,16 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label className="field-label text-[0.65rem] block mb-1.5">Message *</label>
+                  <label htmlFor="c-message" className="field-label text-[0.7rem] block mb-1.5">Message *</label>
                   <textarea
+                    id="c-message"
+                    name="message"
+                    required
                     rows={5}
                     placeholder="Hi Rahul, I'd love to discuss a project with you..."
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    className="w-full font-mono text-sm text-ink px-3 py-2.5 outline-none transition-all resize-none"
+                    className="w-full font-mono text-sm text-ink px-3 py-2.5 transition-all resize-none"
                     style={{
                       background: "#fefcf9",
                       border: "1px solid rgba(74,127,181,0.2)",
@@ -245,28 +274,34 @@ export default function Contact() {
                   />
                 </div>
 
-                {sent ? (
+                {status === "sent" ? (
                   <div
+                    role="status"
                     className="p-4 text-center"
-                    style={{
-                      background: "rgba(22,163,74,0.06)",
-                      border: "1px solid rgba(22,163,74,0.3)",
-                      borderRadius: "2px",
-                    }}
+                    style={{ background: "rgba(22,163,74,0.06)", border: "1px solid rgba(22,163,74,0.3)", borderRadius: "2px" }}
                   >
                     <div className="annotation text-lg text-green-700 mb-1">✓ Message sent!</div>
-                    <p className="font-mono text-xs text-ink-faint">Rahul will get back to you within 24 hours.</p>
+                    <p className="font-mono text-xs text-ink-faint">Thanks — I&apos;ll get back to you as soon as I can.</p>
                   </div>
                 ) : (
+                  <>
+                  {status === "error" && (
+                    <p role="alert" className="font-mono text-xs" style={{ color: "#b91c1c" }}>
+                      {error} You can also email me at{" "}
+                      <a className="underline" href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+                    </p>
+                  )}
                   <button
-                    onClick={handleSubmit}
+                    type="submit"
+                    disabled={status === "sending"}
                     className="w-full py-3 font-mono text-sm font-semibold text-paper flex items-center justify-center gap-2 transition-opacity hover:opacity-90"
                     style={{ background: "#c4420a", borderRadius: "2px" }}
                   >
-                    ✈ Send Message
+                    {status === "sending" ? "Sending…" : "✈ Send Message"}
                   </button>
+                  </>
                 )}
-              </div>
+              </form>
             </div>
           </div>
         </div>
